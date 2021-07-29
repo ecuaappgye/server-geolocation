@@ -3,7 +3,7 @@ const http = require('http')
 const {connection} = require('./socket')
 const morgan = require('morgan')
 const cors = require('cors')
-const config = require('./config')
+const {port} = require('./config')
 
 const application = express()
 
@@ -11,7 +11,7 @@ const server = http.createServer(application)
 
 connection({serverConnection:server})
 
-application.set('port', config.PORT)
+application.set('port', port.PORT)
 application.use(cors())
 application.use(express.urlencoded({extended:true}))
 application.use(express.json())
@@ -19,4 +19,4 @@ application.use(express.json())
 // Configuraciones de los middleware
 application.use(morgan('dev'))
 
-server.listen(application.get('port'), ()=>{console.log(`Server on port ${application.get('port')}`)})
+server.listen(application.get('port'))
