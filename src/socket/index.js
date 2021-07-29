@@ -12,8 +12,12 @@ const connection = function({serverConnection}){
     })
 
     io.on('connection', (client)=>{
-        console.log('Connection with address', client)
+        
     })
 }
 
-module.exports = {connection}
+const getSocketConnection=()=>{
+    return socket
+}
+
+module.exports = {connection, getSocketConnection}

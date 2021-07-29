@@ -3,14 +3,15 @@ const http = require('http')
 const {connection} = require('./socket')
 const morgan = require('morgan')
 const cors = require('cors')
+const config = require('./config')
 
 const application = express()
-application.set('port', process.env.PORT)
 
 const server = http.createServer(application)
 
 connection({serverConnection:server})
 
+application.set('port', config.PORT)
 application.use(cors())
 application.use(express.urlencoded({extended:true}))
 application.use(express.json())
